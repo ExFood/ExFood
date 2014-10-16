@@ -40,7 +40,6 @@ public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		String scanFormat = scanningResult.getFormatName();
 		formatTxt.setText("FORMAT: " + scanFormat);
 		contentTxt.setText("CONTENT: " + scanContent);
-		
 	}
 	else{
 	    Toast toast = Toast.makeText(getApplicationContext(), 
