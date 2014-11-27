@@ -34,13 +34,18 @@ public class AllProductsActivity extends ListActivity {
 	ArrayList<HashMap<String, String>> productsList;
 
 	// url to get all products list
-	private static String url_all_products = "http://exfood.zz.vc/db/get_all_products.php";
+	private static String url_products_by_bar_code = "http://exfood.zz.vc/db/get_products_by_bar_code.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_PRODUCTS = "products";
-	private static final String TAG_PID = "id";
+	private static final String TAG_PRODUCTS = "product";
+	private static final String TAG_PID = "bar_code";
 	private static final String TAG_NAME = "name";
+	private static final String TAG_PROTEINS = "proteins";
+	private static final String TAG_FATS = "fats";
+	private static final String TAG_CARDS = "cards";
+	private static final String TAG_MANUFACTURER = "manufacturer";
+
 
 	// products JSONArray
 	JSONArray products = null;
@@ -124,7 +129,7 @@ public class AllProductsActivity extends ListActivity {
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+			JSONObject json = jParser.makeHttpRequest(url_products_by_bar_code, "GET", params);
 			
 			// Check your log cat for JSON reponse
 			Log.d("All Products: ", json.toString());
