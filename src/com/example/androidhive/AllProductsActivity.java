@@ -45,6 +45,7 @@ public class AllProductsActivity extends ListActivity {
 	private static final String TAG_FATS = "fats";
 	private static final String TAG_CARDS = "cards";
 	private static final String TAG_MANUFACTURER = "manufacturer";
+	private static String scanContent = " ";
 
 
 	// products JSONArray
@@ -148,14 +149,18 @@ public class AllProductsActivity extends ListActivity {
 						JSONObject c = products.getJSONObject(i);
 
 						// Storing each json item in variable
-						String id = c.getString(TAG_PID);
+						String bar_code = c.getString(TAG_PID);
 						String name = c.getString(TAG_NAME);
-
+						String proteins = c.getString(TAG_PROTEINS);
+						String fats = c.getString(TAG_FATS);
+						String cards = c.getString(TAG_CARDS);
+						String manufacturer = c.getString(TAG_MANUFACTURER);
+						
 						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
 
 						// adding each child node to HashMap key => value
-						map.put(TAG_PID, id);
+						map.put(TAG_PID, bar_code);
 						map.put(TAG_NAME, name);
 
 						// adding HashList to ArrayList
