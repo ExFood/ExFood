@@ -14,15 +14,39 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int btnCreateProduct=0x7f050003;
-        public static final int btnDelete=0x7f050005;
-        public static final int btnSave=0x7f050004;
-        public static final int btnViewProducts=0x7f050008;
-        public static final int inputDesc=0x7f050002;
-        public static final int inputName=0x7f050000;
-        public static final int inputPrice=0x7f050001;
-        public static final int name=0x7f050007;
-        public static final int pid=0x7f050006;
+        public static final int btnCreateProduct=0x7f050020;
+        public static final int btnDelete=0x7f05001c;
+        public static final int btnSave=0x7f05001b;
+        public static final int btnViewProducts=0x7f05001f;
+        public static final int createButton=0x7f050017;
+        public static final int inputBarCode=0x7f050003;
+        public static final int inputDesc=0x7f05001a;
+        public static final int inputExx=0x7f050015;
+        public static final int inputManufacture=0x7f050012;
+        public static final int inputName=0x7f050018;
+        public static final int inputPrice=0x7f050019;
+        public static final int inputeCarbs=0x7f05000f;
+        public static final int inputeFats=0x7f05000c;
+        public static final int inputeProdName=0x7f050006;
+        public static final int inputeProteines=0x7f050009;
+        public static final int lBarCode=0x7f050001;
+        public static final int lCarbs=0x7f05000d;
+        public static final int lCreateButton=0x7f050016;
+        public static final int lExx=0x7f050013;
+        public static final int lFats=0x7f05000a;
+        public static final int lGlobal=0x7f050000;
+        public static final int lManufacture=0x7f050010;
+        public static final int lProdName=0x7f050004;
+        public static final int lProt=0x7f050007;
+        public static final int name=0x7f05001e;
+        public static final int pid=0x7f05001d;
+        public static final int textBarCode=0x7f050002;
+        public static final int textCarbs=0x7f05000e;
+        public static final int textExx=0x7f050014;
+        public static final int textFats=0x7f05000b;
+        public static final int textManufacture=0x7f050011;
+        public static final int textProdName=0x7f050005;
+        public static final int textProteines=0x7f050008;
     }
     public static final class layout {
         public static final int add_product=0x7f030000;

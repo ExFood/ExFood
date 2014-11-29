@@ -53,11 +53,16 @@ public class MainScreenActivity extends Activity implements OnClickListener{
 			scanIntegrator.initiateScan();
 		}
 		if(v.getId()==R.id.btnCreateProduct){
+<<<<<<< HEAD
 			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 			scanIntegrator.initiateScan();
 	
 		Toast toast = Toast.makeText(getApplicationContext(), "OK c", Toast.LENGTH_SHORT);
 	    toast.show();
+=======
+			Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+			startActivity(i);
+>>>>>>> origin/get-prodact-by-barcode
 		}
 	    
 	}

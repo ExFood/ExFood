@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NewProductActivity extends Activity {
 
@@ -24,9 +25,13 @@ public class NewProductActivity extends Activity {
 	private ProgressDialog pDialog;
 
 	JSONParser jsonParser = new JSONParser();
+	EditText inputBarCode;
 	EditText inputName;
-	EditText inputPrice;
-	EditText inputDesc;
+	EditText inputProteins;
+	EditText inputFats;
+	EditText inputCarbs;
+	EditText inputManufacture;
+	EditText inputExx;
 
 	// url to create new product
 	private static String url_create_product = "http://exfood.zz.vc/db/create_product.php";
@@ -40,12 +45,17 @@ public class NewProductActivity extends Activity {
 		setContentView(R.layout.add_product);
 
 		// Edit Text
+
+		inputBarCode = (EditText) findViewById(R.id.inputBarCode);
 		inputName = (EditText) findViewById(R.id.inputName);
-		inputPrice = (EditText) findViewById(R.id.inputPrice);
-		inputDesc = (EditText) findViewById(R.id.inputDesc);
+		inputProteins = (EditText) findViewById(R.id.inputeProteines);
+		inputFats = (EditText) findViewById(R.id.inputeFats);
+		inputCarbs = (EditText) findViewById(R.id.inputeCarbs);
+		inputManufacture = (EditText) findViewById(R.id.inputManufacture);
+		inputExx = (EditText) findViewById(R.id.inputExx);
 
 		// Create button
-		Button btnCreateProduct = (Button) findViewById(R.id.btnCreateProduct);
+		Button btnCreateProduct = (Button) findViewById(R.id.createButton);
 
 		// button click event
 		btnCreateProduct.setOnClickListener(new View.OnClickListener() {
@@ -80,20 +90,28 @@ public class NewProductActivity extends Activity {
 		 * Creating product
 		 * */
 		protected String doInBackground(String... args) {
-			String name = inputName.getText().toString();
-			String price = inputPrice.getText().toString();
-			String description = inputDesc.getText().toString();
+			
+			String BarCode = inputBarCode.getText().toString();
+			String Name =  inputName.getText().toString();
+			String Proteins = inputProteins.getText().toString();
+			String Fats = inputFats.getText().toString();
+			String Carbs = inputCarbs.getText().toString();
+			String Manufacture = inputManufacture.getText().toString();
+			String Exx = inputExx.getText().toString();
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("name", name));
-			params.add(new BasicNameValuePair("price", price));
-			params.add(new BasicNameValuePair("description", description));
+			params.add(new BasicNameValuePair("bar_code", BarCode));
+			params.add(new BasicNameValuePair("name", Name));
+			params.add(new BasicNameValuePair("proteins", Proteins));
+			params.add(new BasicNameValuePair("fats", Fats));
+			params.add(new BasicNameValuePair("carbs", Carbs));
+			params.add(new BasicNameValuePair("manufacturer", Manufacture));
+			params.add(new BasicNameValuePair("product_additive", Exx));
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_create_product,
-					"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(url_create_product,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -111,6 +129,8 @@ public class NewProductActivity extends Activity {
 					finish();
 				} else {
 					// failed to create product
+					Toast toast = Toast.makeText(getApplicationContext(),"Продукт не доданий!", Toast.LENGTH_SHORT);
+					toast.show();
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

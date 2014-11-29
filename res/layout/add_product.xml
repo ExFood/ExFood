@@ -2,65 +2,178 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <!-- Name Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Product Name"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
-    
-    <!-- Input Name -->
-	<EditText android:id="@+id/inputName"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:singleLine="true"/>
-	
-	<!-- Price Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Price"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
-    
-    <!-- Input Price -->
-	<EditText android:id="@+id/inputPrice" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:singleLine="true"
-	    android:inputType="numberDecimal"/>
-	
-	<!-- Description Label -->
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:paddingLeft="10dip"
-        android:paddingRight="10dip"
-        android:paddingTop="10dip"
-        android:textSize="17dip"/>
-    
-    <!-- Input description -->
-	<EditText android:id="@+id/inputDesc" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dip"
-	    android:layout_marginBottom="15dip"
-	    android:lines="4"
-	    android:gravity="top"/>
-	
-	<!-- Button Create Product -->
-	<Button android:id="@+id/btnCreateProduct" 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Create Product"/>
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/lGlobal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/lBarCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textBarCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="7dp"
+                android:text="Штрих-код" />
+
+            <EditText
+                android:id="@+id/inputBarCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.62"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lProdName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textProdName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="39dp"
+                android:text="Назва" />
+
+            <EditText
+                android:id="@+id/inputeProdName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.18"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lProt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textProteines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="21dp"
+                android:text="Протеїни" />
+
+            <EditText
+                android:id="@+id/inputeProteines"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.96"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lFats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textFats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="46dp"
+                android:text="Жири" />
+
+            <EditText
+                android:id="@+id/inputeFats"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lCarbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textCarbs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="11dp"
+                android:text="Вуглеводи" />
+
+            <EditText
+                android:id="@+id/inputeCarbs"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lManufacture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textManufacture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="17dp"
+                android:text="Виробник" />
+
+            <EditText
+                android:id="@+id/inputManufacture"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lExx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textExx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="59dp"
+                android:text="Exx" />
+
+            <EditText
+                android:id="@+id/inputExx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lCreateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.46"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/createButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Внести продукт до БД" />
+        </LinearLayout>
+    </LinearLayout>
 	
 </LinearLayout>

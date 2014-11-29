@@ -6,16 +6,20 @@
     android:gravity="center_horizontal">
 	
     <!--  Sample Dashboard screen with Two buttons -->
-    <Button android:id="@+id/btnViewProducts"
+
+    <Button
+        android:id="@+id/btnViewProducts"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="View Products"
-        android:layout_marginTop="25dip"/>
+        android:layout_marginTop="25dip"
+        android:text="Сканувати штрих-код" />
     
-    <Button android:id="@+id/btnCreateProduct"
+    <Button
+        android:id="@+id/btnCreateProduct"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Products"
-        android:layout_marginTop="25dip"/>
+        android:layout_marginTop="25dip"
+        android:text="Додати новий продукт" />
+    
 
 </LinearLayout>

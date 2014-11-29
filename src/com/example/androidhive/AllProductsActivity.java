@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +32,7 @@ public class AllProductsActivity extends ListActivity {
 
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
+	JSONParser jsonParser = new JSONParser();
 
 	ArrayList<HashMap<String, String>> productsList;
 
@@ -62,8 +64,11 @@ public class AllProductsActivity extends ListActivity {
 		
 		Intent i = getIntent();
 		scanContent = i.getStringExtra("scanContent");
+<<<<<<< HEAD
 		Toast toast = Toast.makeText(getApplicationContext(), scanContent, Toast.LENGTH_SHORT);
 		toast.show();
+=======
+>>>>>>> origin/get-prodact-by-barcode
 		
 		// Loading products in Background Thread
 		new LoadAllProducts().execute();
@@ -133,13 +138,21 @@ public class AllProductsActivity extends ListActivity {
 		 * */
 		protected String doInBackground(String... args) {
 			// Building Parameters
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			//List<NameValuePair> params = new ArrayList<NameValuePair>();
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(url_products_by_bar_code, "GET", params);
+			//JSONObject json = jParser.makeHttpRequest(url_products_by_bar_code, "GET", params);
 			
+			
+
+			// Building Parameters
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("bar_code", scanContent));
+
+			// getting JSON Object
+			JSONObject json = jsonParser.makeHttpRequest(url_products_by_bar_code,"POST", params);
 			// Check your log cat for JSON reponse
 			Log.d("All Products: ", json.toString());
-
+			
 			try {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
