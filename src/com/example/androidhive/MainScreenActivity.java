@@ -1,13 +1,18 @@
 package com.example.androidhive;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 
-public class MainScreenActivity extends Activity{
+public class MainScreenActivity extends Activity implements OnClickListener{
 	
 	Button btnViewProducts;
 	Button btnNewProduct;
@@ -20,29 +25,38 @@ public class MainScreenActivity extends Activity{
 		// Buttons
 		btnViewProducts = (Button) findViewById(R.id.btnViewProducts);
 		btnNewProduct = (Button) findViewById(R.id.btnCreateProduct);
-		
 		// view products click event
-		btnViewProducts.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View view) {
-				// Launching All products Activity
-				Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
-				startActivity(i);
-				
-			}
-		});
 		
-		// view products click event
-		btnNewProduct.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View view) {
-				// Launching create new product activity
-				Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
-				startActivity(i);
-				
-			}
-		});
+		btnViewProducts.setOnClickListener(this);
+		btnNewProduct.setOnClickListener(this);
+		
 	}
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		if (scanningResult != null) {
+			String scanContent = scanningResult.getContents();
+			Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
+			i.putExtra("scanContent", scanContent);
+			startActivity(i);
+		}
+		else{
+		    Toast toast = Toast.makeText(getApplicationContext(), 
+		        "Данних сканування не отримано!", Toast.LENGTH_SHORT);
+		    toast.show();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId()==R.id.btnViewProducts){
+			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+			scanIntegrator.initiateScan();
+		}
+		if(v.getId()==R.id.btnCreateProduct){
+			Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+			startActivity(i);
+		}
+	    
+	}
+	
 }

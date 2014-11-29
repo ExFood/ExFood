@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +23,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AllProductsActivity extends ListActivity {
 
@@ -30,6 +32,7 @@ public class AllProductsActivity extends ListActivity {
 
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
+	JSONParser jsonParser = new JSONParser();
 
 	ArrayList<HashMap<String, String>> productsList;
 
@@ -45,6 +48,7 @@ public class AllProductsActivity extends ListActivity {
 	private static final String TAG_FATS = "fats";
 	private static final String TAG_CARDS = "cards";
 	private static final String TAG_MANUFACTURER = "manufacturer";
+	private static String scanContent = " ";
 
 
 	// products JSONArray
@@ -57,17 +61,19 @@ public class AllProductsActivity extends ListActivity {
 
 		// Hashmap for ListView
 		productsList = new ArrayList<HashMap<String, String>>();
-
+		
+		Intent i = getIntent();
+		scanContent = i.getStringExtra("scanContent");
+		
 		// Loading products in Background Thread
 		new LoadAllProducts().execute();
-
+		
 		// Get listview
 		ListView lv = getListView();
-
+		
 		// on seleting single product
 		// launching Edit Product Screen
 		lv.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -127,13 +133,21 @@ public class AllProductsActivity extends ListActivity {
 		 * */
 		protected String doInBackground(String... args) {
 			// Building Parameters
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			//List<NameValuePair> params = new ArrayList<NameValuePair>();
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(url_products_by_bar_code, "GET", params);
+			//JSONObject json = jParser.makeHttpRequest(url_products_by_bar_code, "GET", params);
 			
+			
+
+			// Building Parameters
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("bar_code", scanContent));
+
+			// getting JSON Object
+			JSONObject json = jsonParser.makeHttpRequest(url_products_by_bar_code,"POST", params);
 			// Check your log cat for JSON reponse
 			Log.d("All Products: ", json.toString());
-
+			
 			try {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
@@ -148,14 +162,18 @@ public class AllProductsActivity extends ListActivity {
 						JSONObject c = products.getJSONObject(i);
 
 						// Storing each json item in variable
-						String id = c.getString(TAG_PID);
+						String bar_code = c.getString(TAG_PID);
 						String name = c.getString(TAG_NAME);
-
+						String proteins = c.getString(TAG_PROTEINS);
+						String fats = c.getString(TAG_FATS);
+						String cards = c.getString(TAG_CARDS);
+						String manufacturer = c.getString(TAG_MANUFACTURER);
+						
 						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
 
 						// adding each child node to HashMap key => value
-						map.put(TAG_PID, id);
+						map.put(TAG_PID, bar_code);
 						map.put(TAG_NAME, name);
 
 						// adding HashList to ArrayList
